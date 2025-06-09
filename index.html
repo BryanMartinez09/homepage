@@ -1,180 +1,585 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
+<html lang="es" x-data="{ open: true, userOpen: false }" class="min-h-screen overflow-x-hidden bg-[#0f172a]">
+
+<head>
     <meta charset="UTF-8" />
-    <title>Mi Currículum</title>
-    <link rel="stylesheet" href="style.css" />
+    <title>Portafolio</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-  </head>
-  <body>
-    <main>
-      <div class="resume">
-        <div class="container">
-          <div class="resume__block">
-            <h1 class="contact-info__header">Bryan Alexander Berrio Martinez</h1>
-            <h3 class="contact-info__sub-header">Frontend Developer</h3>
 
-            <div class="contact_info_container fh">
-                <div class="contact-info__block">
-              
-                  <!-- Ubicación -->
-                  <a href="#" rel="author" class="contact-info__item">
-                    <div class="contact-info__item-icon-wrapper">
-                      <i class="fas fa-map-marker-alt contact-info__item-icon"></i>
-                    </div>
-                    <span>El Salvador, Sonsonate, Nahuizalco</span>
-                  </a>
-              
-                  <!-- LinkedIn -->
-                  <a href="https://linkedin.com/in/bryan-martinez-006785319" target="_blank" rel="noopener" class="contact-info__item">
-                    <div class="contact-info__item-icon-wrapper">
-                      <i class="fab fa-linkedin contact-info__item-icon"></i>
-                    </div>
-                    <span>BryanMartinez</span>
-                  </a>
-              
-                  <!-- GitHub -->
-                  <a href="https://github.com/BryanMartinez09" target="_blank" rel="noopener" class="contact-info__item">
-                    <div class="contact-info__item-icon-wrapper">
-                      <i class="fab fa-github contact-info__item-icon"></i>
-                    </div>
-                    <span>@BryanMartinez09</span>
-                  </a>
-              
-                  <!-- Correo -->
-                  <a href="mailto:bryan@example.com" class="contact-info__item">
-                    <div class="contact-info__item-icon-wrapper">
-                      <i class="fas fa-envelope contact-info__item-icon"></i>
-                    </div>
-                    <span>bryanalexandermartinez@outlook.com</span>
-                  </a>
-              
-                  <!-- Teléfono -->
-                  <a href="tel:+50372158412" class="contact-info__item">
-                    <div class="contact-info__item-icon-wrapper">
-                      <i class="fas fa-phone contact-info__item-icon"></i>
-                    </div>
-                    <span>+503 72158412</span>
-                  </a>
-              
-                </div>
-              
-                <!-- Avatar -->
-                <div class="contact-info__block contact-info__block--center">
-                  <img class="contact-info__avatar" src="assets/avatar.jpeg" alt="Avatar" />
-                </div>
-              
-                <div class="contact-info__block"></div>
-              </div>
-              
+    <!-- AlpineJS -->
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+
+    <!-- AOS -->
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+    <style>
+        [x-cloak] { display: none !important; }
+    </style>
+</head>
+
+<body class="min-h-screen text-white flex overflow-x-hidden">
+
+
+    <!-- SIDEBAR -->
+    <aside
+        :class="open ? 'w-64' : 'w-16'"
+        class="fixed top-0 left-0 h-screen bg-gradient-to-b from-[#0f172a] via-[#111827] to-[#0f172a] text-white shadow-2xl flex flex-col justify-between rounded-r-3xl transition-all duration-500 ease-in-out overflow-hidden z-40"
+    >
+
+        <!-- Header -->
+        <div class="p-4 flex items-center justify-between">
+            <span x-show="open" x-transition.opacity.duration.500ms class="text-xl font-bold tracking-wide">Menú</span>
+            <button @click="open = !open"
+                class="text-white text-2xl hover:scale-110 hover:text-blue-400 transition-transform duration-300">
+                <i class="fas fa-bars"></i>
+            </button>
         </div>
 
-       <!-- Bloque de introducción -->
-        <div class="container">
-            <div class="resume__block">
-            <div class="intro">
-                <div class="intro__icon-wrapper">
-                <!-- Ícono -->
-                <!-- Ícono para la descripción -->
-                <svg class="intro__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                    <path d="M256 32c-70.7 0-128 57.3-128 128s57.3 128 128 128 128-57.3 128-128-57.3-128-128-128zm0 192c-35.3 0-64-28.7-64-64s28.7-64 64-64 64 28.7 64 64-28.7 64-64 64zM128 352h256c17.7 0 32 14.3 32 32v96c0 17.7-14.3 32-32 32H128c-17.7 0-32-14.3-32-32v-96c0-17.7 14.3-32 32-32zm32 96h192v-64H160v64z"></path>
-                </svg>
-  
-                </div>
-                <p class="intro_text">I am Bryan Martinez, a front-end developer, passionate about programming and new technologies, with knowledge in the area of web development, creating solid and elegant structures.</p>
+        <!-- Navegación -->
+        <nav class="flex-1 px-2 mt-6 space-y-2">
+            <a href="#inicio"
+                class="group relative flex items-center gap-3 p-3 rounded-xl transition-all duration-300 transform hover:scale-[1.04] hover:shadow-lg hover:bg-blue-500">
+                <i class="fas fa-home text-lg group-hover:rotate-12 group-hover:text-white transition-transform duration-300"></i>
+                <span x-show="open" x-transition.opacity.duration.400ms>Inicio</span>
+            </a>
+            <a href="#habilidades"
+                class="group relative flex items-center gap-3 p-3 rounded-xl transition-all duration-300 transform hover:scale-[1.04] hover:shadow-lg hover:bg-blue-500">
+                <i class="fas fa-cogs text-lg group-hover:rotate-12 group-hover:text-white transition-transform duration-300"></i>
+                <span x-show="open" x-transition.opacity.duration.400ms>Habilidades</span>
+            </a>
+            <a href="#proyectos"
+                class="group relative flex items-center gap-3 p-3 rounded-xl transition-all duration-300 transform hover:scale-[1.04] hover:shadow-lg hover:bg-blue-500">
+                <i class="fas fa-wallet text-lg group-hover:rotate-12 group-hover:text-white transition-transform duration-300"></i>
+                <span x-show="open" x-transition.opacity.duration.400ms>Proyectos</span>
+            </a>
+            <a href="#sobre-mi"
+                class="group relative flex items-center gap-3 p-3 rounded-xl transition-all duration-300 transform hover:scale-[1.04] hover:shadow-lg hover:bg-blue-500">
+                <i class="fas fa-user text-lg group-hover:rotate-12 group-hover:text-white transition-transform duration-300"></i>
+                <span x-show="open" x-transition.opacity.duration.400ms>Sobre mí</span>
+            </a>
+            <a href="#contacto"
+                class="group relative flex items-center gap-3 p-3 rounded-xl transition-all duration-300 transform hover:scale-[1.04] hover:shadow-lg hover:bg-blue-500">
+                <i class="fas fa-envelope text-lg group-hover:rotate-12 group-hover:text-white transition-transform duration-300"></i>
+                <span x-show="open" x-transition.opacity.duration.400ms>Contacto</span>
+            </a>
+        </nav>
+
+        <!-- Footer -->
+        <div class="p-4 border-t border-white/10 space-y-4 relative">
+            <div class="flex gap-3 justify-center" x-show="open" x-transition.opacity.duration.400ms>
+                <a href="https://github.com/BryanMartinez09" target="_blank" class="text-xl hover:text-blue-400 transition">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/bryan-martinez-006785319" target="_blank" class="text-xl hover:text-blue-400 transition">
+                    <i class="fab fa-linkedin"></i>
+                </a>
             </div>
+
+            <div class="flex items-center gap-3 mt-3 relative">
+                <button @click="userOpen = !userOpen"
+                    class="w-10 h-10 rounded-full overflow-hidden ring-2 ring-blue-500 hover:scale-105 transition">
+                    <img src="images/Bryan.jpeg" alt="Avatar">
+                </button>
+                <div x-show="open" x-transition.opacity.duration.400ms>
+                    <p class="text-sm font-bold">Bryan Martinez</p>
+                    <p class="text-xs text-gray-400">Desarrollador</p>
+                </div>
+
+                <!-- Dropdown -->
+                <div x-show="userOpen" @click.away="userOpen = false"
+                    class="absolute bottom-16 left-16 bg-white/10 backdrop-blur-md p-3 rounded-lg shadow-xl space-y-2 text-sm z-50 w-40">
+                    <a href="#perfil" class="block hover:text-blue-400">Mi Perfil</a>
+                    <a href="#configuracion" class="block hover:text-blue-400">Configuración</a>
+                </div>
             </div>
         </div>
-  
+    </aside>
 
-       <!-- Bloque de habilidades -->
-        <div class="container">
-            <div class="resume__block">
-            <div class="skills">
-                <h3 class="skills__header">Skills</h3>
-                <p class="skills__text"><strong>Critical Thinking:</strong> Ability to identify, analyze and solve problems efficiently.</p>
-                <p class="skills__text"><strong>Communication Skills:</strong> Ability to explain complex concepts in a clear and understandable manner.</p>
-                <p class="skills__text"><strong>Team Collaboration:</strong> Effective work with multidisciplinary teams, promoting open and fluid communication.</p>
-                <p class="skills__text"><strong>Problem Solving:</strong> Ability to identify, analyze and solve problems efficiently.</p>
-            </div>
+    <!-- CONTENIDO PRINCIPAL -->
+   <main
+    :class="open ? 'ml-64' : 'ml-16'"
+    class="transition-all duration-500 ease-in-out w-full min-h-screen px-4 pt-6 pb-20 space-y-20 scroll-smooth"
+>
+
+
+
+        <!-- Sección Inicio -->
+        <section id="inicio" class="min-h-[calc(100vh-3rem)] relative bg-[#0f172a] text-white flex flex-col md:flex-row items-center justify-between px-6 md:px-20 pt-20 pb-10 gap-10 overflow-hidden" data-aos="fade-up">
+
+        <!-- Contenedor de partículas -->
+        <div id="tsparticles" class="absolute inset-0 z-0"></div>
+
+        <!-- TEXTO -->
+        <div class="max-w-xl space-y-6 md:text-left text-center z-10" data-aos="fade-right">
+            <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight">
+                ¡HOLA, SOY <span class="text-white">BRYAN!</span><br>
+                <span class="text-blue-500">DESARROLLADOR WEB</span>
+            </h1>
+            <p class="text-gray-300 text-lg">
+                Soy un desarrollador apasionado con la misión de crear sitios web modernos e interactivos.
+                Con una sólida base en Laravel, Vue y Tailwind, me enfoco en escribir código limpio y ofrecer experiencias fluidas.
+            </p>
+
+            <!-- BOTONES -->
+            <div class="flex flex-col sm:flex-row items-center gap-4 mt-6 justify-center md:justify-start"
+                x-data="{ showDropdown: false, showTooltip: false }">
+
+                <!-- BOTÓN DE DESCARGA CON DROPDOWN HACIA ARRIBA -->
+                <div class="relative">
+                    <button @mouseenter="showTooltip = true" @mouseleave="showTooltip = false"
+                            @click="showDropdown = !showDropdown"
+                            class="bg-gradient-to-r from-cyan-500 to-indigo-600 hover:from-indigo-600 hover:to-cyan-500 text-white font-semibold px-6 py-3 rounded-xl transition-all duration-300 shadow-lg flex items-center gap-2 hover:scale-105">
+                        <i class="fas fa-download animate-bounce-once"></i> Descargar CV
+                    </button>
+
+                    <!-- TOOLTIP -->
+                    <div x-show="showTooltip"
+                        x-transition
+                        class="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 bg-black/80 text-white text-xs px-3 py-2 rounded shadow-lg z-50">
+                        Elige entre Español o Inglés
+                    </div>
+
+                    <!-- DROPDOWN HACIA ARRIBA -->
+                    <div x-show="showDropdown"
+                        @click.away="showDropdown = false"
+                        x-transition:enter="transition ease-out duration-200"
+                        x-transition:enter-start="opacity-0 -translate-y-2 scale-95"
+                        x-transition:enter-end="opacity-100 translate-y-0 scale-100"
+                        x-transition:leave="transition ease-in duration-150"
+                        x-transition:leave-start="opacity-100 translate-y-0 scale-100"
+                        x-transition:leave-end="opacity-0 -translate-y-2 scale-95"
+                        class="absolute bottom-full mb-3 left-1/2 -translate-x-1/2 w-72 bg-[#1e293b] border border-white/10 backdrop-blur-md rounded-xl shadow-2xl z-50 text-white divide-y divide-white/10 overflow-hidden">
+
+                        <a href="CV/Bryan Martinez.pdf" download
+                          class="flex items-center gap-3 px-5 py-4 hover:bg-blue-600 transition-all duration-200">
+                            <span class="text-lg">🇪🇸</span>
+                            <div class="text-sm font-medium">Descargar versión en Español</div>
+                        </a>
+
+                        <a href="CV/Bryan MartinezEN.pdf" download
+                          class="flex items-center gap-3 px-5 py-4 hover:bg-blue-600 transition-all duration-200">
+                            <span class="text-lg">🇬🇧</span>
+                            <div class="text-sm font-medium">Download English Version</div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- BOTÓN VER PORTAFOLIO -->
+                <a href="#proyectos"
+                  class="flex items-center gap-2 text-white hover:text-blue-400 transition-all duration-300 transform hover:scale-105 group">
+                    <i class="fas fa-play-circle text-2xl group-hover:animate-pulse"></i>
+                    <span class="text-lg font-medium">Ver Portafolio</span>
+                </a>
             </div>
         </div>
 
-        <!-- Experiencia y educación -->
-        <div class="container">
-          <div class="resume__block">
-            <div class="main-info fh">
-              <div class="experiences">
-                <h3 class="experiences__header">Experience</h3>
-                <div class="experiences__company">
-                  <div class="experiences__company-header">
-                    <span class="experiences__company-header-durability">2025</span>
-                    <h3 class="experiences__company-project-name">Website Creation</h3>
-                    <ul class="experiences__company-project-responsibilities">
-                        <li>Web Design and layout structuring</li>
-                        <li>Frontend Development using Frameworks and libraries </li>
-                        <li>API Integration for dynamic data</li>
-                        <li>Responsive Design Implementation for mobile and desktop</li>
-                        <li>Cross-browser and cross-device compatibility testing</li>
-                        <li>Version control using Git and GitHub</li>
-                        <li>Performance tuning and page speed improvements</li>
-                        
-                    </ul>
-                  </div>
-
-                  <div class="experiences__company-project">
-                    <span class="experiences__company-project-role"></span>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Bloque de educación -->
-            <div class="additional-info fv">
-                <div class="additional-info__education">
-                <h3 class="additional-info__education-header">Education</h3>
-            
-                <!-- Universidad Dr. Andrés Bello -->
-                <div class="additional-info__education-university">
-                    <span class="additional-info__education-university-durability">2022 - 2025</span>
-                    <h3 class="additional-info__education-university-speciality">Ingeniería en Sistemas Informáticos y Computacionales</h3>
-                    <p class="additional-info__education-university-name">Universidad Dr. Andrés Bello, Sonsonate</p>
-                </div>
-
-                <div class="additional-info__education-university">
-                    <span class="additional-info__education-university-durability">2024 - 2024</span>
-                    <h3 class="additional-info__education-university-speciality">Tecnico en Mantenimiento</h3>
-                    <p class="additional-info__education-university-name">ESFE AGAPE</p>
-                </div>
-            
-                <!-- Instituto Politécnico Sonsonate -->
-                <div class="additional-info__education-university">
-                    <span class="additional-info__education-university-durability">2020 - 2021</span>
-                    <h3 class="additional-info__education-university-speciality">Bachillerato en Diseño Grafico</h3>
-                    <p class="additional-info__education-university-name">Instituto Politécnico Sonsonate</p>
-                </div>
-            
-                <!-- Complejo Educativo Dr. José Ciro Brito -->
-                <div class="additional-info__education-university">
-                    <span class="additional-info__education-university-durability">2010 - 2019</span>
-                    <h3 class="additional-info__education-university-speciality">Educación Básica</h3>
-                    <p class="additional-info__education-university-name">Complejo Educativo Dr. José Ciro Brito</p>
-                </div>
-                </div>
+        <!-- IMAGEN -->
+        <div class="relative w-60 h-60 sm:w-72 sm:h-72 md:w-80 md:h-80 rounded-full z-10" data-aos="zoom-in">
+            <div class="absolute inset-0 rounded-full border-4 border-blue-500 animate-spin-slow opacity-30 z-0"></div>
+            <div class="relative w-full h-full rounded-full overflow-hidden border-4 border-blue-500 z-10 shadow-lg">
+                <img src="images/Bryan.jpeg" alt="Bryan"
+                    class="w-full h-full object-cover object-top rounded-full hover:scale-105 transition duration-500 ease-in-out">
             </div>
-  
+        </div>
+    </section>
 
-                <div class="additional-info__languages">
-                  <h3 class="additional-info__languages-header">Languages</h3>
-                  <p class="additional-info__languages-item">English</p>
-                  <p class="additional-info__languages-item">Spanish</p>
-                </div>
-              </div>
-            </div>
+        <!-- Sección Habilidades -->
+       <section id="habilidades"class="min-h-screen bg-[#0f172a] text-white flex flex-col justify-center px-6 md:px-20">
+
+          <!-- Título -->
+          <div class="text-center mb-5" data-aos="fade-down">
+              <h2 class="text-4xl md:text-5xl font-bold text-blue-400">Habilidades</h2>
+              <p class="mt-2 text-gray-300">Lo que me define como profesional</p>
           </div>
+
+          <!-- Contenido -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
+
+              <!-- Habilidades Blandas -->
+              <div class="bg-[#1e293b] rounded-2xl p-8 shadow-lg hover:shadow-blue-500/20 transition" data-aos="fade-right">
+                  <h3 class="text-2xl font-semibold mb-4 border-b border-white/10 pb-2">Habilidades Blandas</h3>
+                  <ul class="space-y-3 text-white/90">
+                      <li class="flex items-center gap-3 hover:translate-x-1 transition-all duration-200">
+                          <i class="fas fa-check-circle text-blue-400 animate-pulse"></i> Aprendizaje rápido
+                      </li>
+                      <li class="flex items-center gap-3 hover:translate-x-1 transition-all duration-200">
+                          <i class="fas fa-check-circle text-blue-400 animate-pulse"></i> Resolución de problemas
+                      </li>
+                      <li class="flex items-center gap-3 hover:translate-x-1 transition-all duration-200">
+                          <i class="fas fa-check-circle text-blue-400 animate-pulse"></i> Trabajo en equipo
+                      </li>
+                      <li class="flex items-center gap-3 hover:translate-x-1 transition-all duration-200">
+                          <i class="fas fa-check-circle text-blue-400 animate-pulse"></i> Pensamiento analítico
+                      </li>
+                      <li class="flex items-center gap-3 hover:translate-x-1 transition-all duration-200">
+                          <i class="fas fa-check-circle text-blue-400 animate-pulse"></i> Comunicación efectiva
+                      </li>
+                      <li class="flex items-center gap-3 hover:translate-x-1 transition-all duration-200">
+                          <i class="fas fa-check-circle text-blue-400 animate-pulse"></i> Creatividad
+                      </li>
+                  </ul>
+              </div>
+
+              <!-- Habilidades Técnicas -->
+              <div class="bg-[#1e293b] rounded-2xl p-8 shadow-lg hover:shadow-blue-500/20 transition" data-aos="fade-left">
+                  <h3 class="text-2xl font-semibold mb-4 border-b border-white/10 pb-2">Habilidades Técnicas</h3>
+
+                  <!-- Lenguajes -->
+                  <div class="mb-6" data-aos="zoom-in-up">
+                      <p class="font-bold mb-2 text-blue-300">Lenguajes de Programación</p>
+                      <div class="flex flex-wrap gap-4">
+                          <div class="flex items-center gap-2 bg-[#0f172a] px-4 py-2 rounded-xl hover:bg-blue-600 transition transform hover:scale-105">
+                              <i class="fa-brands fa-python text-xl animate-bounce text-blue-400"></i> Python
+                          </div>
+                          <div class="flex items-center gap-2 bg-[#0f172a] px-4 py-2 rounded-xl hover:bg-blue-600 transition transform hover:scale-105">
+                              <i class="fa-brands fa-php text-xl animate-bounce text-green-400"></i> PHP
+                          </div>
+                          <div class="flex items-center gap-2 bg-[#0f172a] px-4 py-2 rounded-xl hover:bg-blue-600 transition transform hover:scale-105">
+                              <i class="fa-brands fa-js text-xl animate-bounce text-yellow-400"></i> JavaScript
+                          </div>
+                          <div class="flex items-center gap-2 bg-[#0f172a] px-4 py-2 rounded-xl hover:bg-blue-600 transition transform hover:scale-105">
+                              <i class="fa-brands fa-java text-xl animate-bounce text-red-400"></i> Java
+                          </div>
+                          <div class="flex items-center gap-2 bg-[#0f172a] px-4 py-2 rounded-xl hover:bg-blue-600 transition transform hover:scale-105">
+                              <i class="fa-solid fa-code text-xl animate-bounce text-purple-400"></i> C#
+                          </div>
+                      </div>
+                  </div>
+
+                  <!-- Bases de Datos -->
+                  <div class="mb-6" data-aos="fade-up">
+                      <p class="font-bold mb-2 text-blue-300">Bases de Datos</p>
+                      <div class="flex gap-4 flex-wrap">
+                          <span class="bg-[#0f172a] px-4 py-2 rounded-xl hover:bg-blue-600 transition">MySQL</span>
+                          <span class="bg-[#0f172a] px-4 py-2 rounded-xl hover:bg-blue-600 transition">SQL Server</span>
+                      </div>
+                  </div>
+
+                  <!-- Control de Versiones -->
+                  <div class="mb-6" data-aos="fade-up" data-aos-delay="100">
+                      <p class="font-bold mb-2 text-blue-300">Control de versiones</p>
+                      <div class="flex gap-4">
+                          <span class="flex items-center gap-2 bg-[#0f172a] px-4 py-2 rounded-xl hover:bg-blue-600 transition">
+                              <i class="fab fa-git-alt text-orange-500"></i> Git
+                          </span>
+                          <span class="flex items-center gap-2 bg-[#0f172a] px-4 py-2 rounded-xl hover:bg-blue-600 transition">
+                              <i class="fab fa-github text-white"></i> GitHub
+                          </span>
+                      </div>
+                  </div>
+
+                  <!-- Frameworks y Librerías -->
+                  <div class="mb-6" data-aos="fade-up" data-aos-delay="200">
+                      <p class="font-bold mb-2 text-blue-300">Frameworks y Librerías</p>
+                      <div class="flex gap-4 flex-wrap">
+                          <span class="bg-[#0f172a] px-4 py-2 rounded-xl hover:bg-blue-600 transition">Laravel</span>
+                          <span class="bg-[#0f172a] px-4 py-2 rounded-xl hover:bg-blue-600 transition">React</span>
+                          <span class="bg-[#0f172a] px-4 py-2 rounded-xl hover:bg-blue-600 transition">Django</span>
+                          <span class="bg-[#0f172a] px-4 py-2 rounded-xl hover:bg-blue-600 transition">Tailwind CSS</span>
+                      </div>
+                  </div>
+
+                  <!-- Otros -->
+                  <div data-aos="fade-up" data-aos-delay="300">
+                      <p class="font-bold mb-2 text-blue-300">Otras tecnologías</p>
+                      <div class="flex gap-4 flex-wrap">
+                          <span class="bg-[#0f172a] px-4 py-2 rounded-xl hover:bg-blue-600 transition">Docker</span>
+                          <span class="bg-[#0f172a] px-4 py-2 rounded-xl hover:bg-blue-600 transition">Flutter</span>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+      </section>
+
+
+        <!-- Sección Proyectos -->
+       <section id="proyectos" class="relative bg-[#0f172a] text-white py-1 px-4 sm:px-6 lg:px-20 overflow-hidden">
+
+            <!-- ICONOS FLOTANTES DE FONDO -->
+            <div class="absolute inset-0 z-0 opacity-10 pointer-events-none">
+                <div class="absolute top-10 left-4 text-4xl sm:text-5xl animate-float-slow text-red-600"><i class="fab fa-laravel"></i></div>
+                <div class="absolute top-1/3 right-6 text-3xl sm:text-4xl animate-ping-slow text-yellow-400"><i class="fab fa-js"></i></div>
+                <div class="absolute top-1/2 left-1/2 text-4xl sm:text-5xl animate-float-fast text-green-400"><i class="fab fa-vuejs"></i></div>
+                <div class="absolute bottom-24 right-10 text-5xl sm:text-6xl animate-float text-orange-500"><i class="fab fa-java"></i></div>
+                <div class="absolute top-1/4 right-1/4 text-4xl sm:text-5xl animate-pulse text-blue-400"><i class="fab fa-css3-alt"></i></div>
+            </div>
+
+            <!-- TÍTULO -->
+            <div class="relative z-10 text-center mb-16 sm:mb-20" data-aos="fade-up">
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-4">Mis Proyectos</h2>
+                <p class="text-gray-400 max-w-xl mx-auto text-sm sm:text-base md:text-lg">
+                    Explora algunos de mis desarrollos favoritos en backend, frontend y plataformas completas.
+                </p>
+            </div>
+
+            <!-- GRID DE TARJETAS -->
+            <div class="relative z-10 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 sm:gap-8">
+
+                <div class="bg-[#1e293b] rounded-2xl shadow-xl border border-white/5 hover:border-blue-500 hover:shadow-blue-500/20 hover:scale-[1.015] transition-all duration-500 p-6 space-y-4"
+                    data-aos="fade-up" data-aos-delay="0">
+                    <h3 class="text-xl sm:text-2xl font-bold flex items-center gap-2">
+                        <i class="fab fa-envira text-green-400"></i> EcoSostenible
+                    </h3>
+                    <p class="text-gray-300 text-sm sm:text-base leading-relaxed">Plataforma educativa ambiental usando Laravel y Tailwind CSS. Incluye foro, retos ecológicos, y perfil de usuario.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-blue-600 px-2 py-1 rounded text-xs sm:text-sm flex items-center gap-1"><i class="fab fa-laravel"></i> Laravel</span>
+                        <span class="bg-green-600 px-2 py-1 rounded text-xs sm:text-sm flex items-center gap-1"><i class="fab fa-css3-alt"></i> Tailwind</span>
+                        <span class="bg-yellow-400 px-2 py-1 rounded text-xs sm:text-sm flex items-center gap-1">Blade</span>
+                    </div>
+                    <div class="pt-2">
+                        <a href="https://github.com/BryanMartinez09/EcoSostenibleLaravel" target="_blank"
+                          class="text-blue-400 hover:underline text-sm font-medium">
+                          → Código fuente
+                        </a>
+                    </div>
+                </div>
+
+                <div class="bg-[#1e293b] rounded-2xl shadow-xl border border-white/5 hover:border-blue-500 hover:shadow-blue-500/20 hover:scale-[1.015] transition-all duration-500 p-6 space-y-4"
+                    data-aos="fade-up" data-aos-delay="100">
+                    <h3 class="text-xl sm:text-2xl font-bold flex items-center gap-2">
+                        <i class="fas fa-credit-card text-indigo-400"></i> Sistema de Pagos
+                    </h3>
+                    <p class="text-gray-300 text-sm sm:text-base leading-relaxed">Plantilla moderna de sistema de pagos con Laravel, interfaz administrativa y backend estructurado.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-blue-600 px-2 py-1 rounded text-xs sm:text-sm flex items-center gap-1"><i class="fab fa-laravel"></i> Laravel</span>
+                        <span class="bg-indigo-500 px-2 py-1 rounded text-xs sm:text-sm flex items-center gap-1">AdminLTE</span>
+                    </div>
+                    <div class="pt-2">
+                        <a href="https://github.com/BryanMartinez09/Sistema-De-Pagos" target="_blank"
+                          class="text-blue-400 hover:underline text-sm font-medium">
+                          → Código fuente
+                        </a>
+                    </div>
+                </div>
+
+                <div class="bg-[#1e293b] rounded-2xl shadow-xl border border-white/5 hover:border-blue-500 hover:shadow-blue-500/20 hover:scale-[1.015] transition-all duration-500 p-6 space-y-4"
+                    data-aos="fade-up" data-aos-delay="200">
+                    <h3 class="text-xl sm:text-2xl font-bold flex items-center gap-2">
+                        <i class="fab fa-java text-orange-500"></i> JAVA Spring Boot
+                    </h3>
+                    <p class="text-gray-300 text-sm sm:text-base leading-relaxed">Backend de ejemplo en Java con Spring Boot, ideal para prácticas de API RESTful, controladores y servicios.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-orange-500 px-2 py-1 rounded text-xs sm:text-sm flex items-center gap-1"><i class="fab fa-java"></i> Java</span>
+                        <span class="bg-gray-600 px-2 py-1 rounded text-xs sm:text-sm flex items-center gap-1">Spring Boot</span>
+                    </div>
+                    <div class="pt-2">
+                        <a href="https://github.com/BryanMartinez09/Java-Spring-Boot" target="_blank"
+                          class="text-blue-400 hover:underline text-sm font-medium">
+                          → Código fuente
+                        </a>
+                    </div>
+                </div>
+
+                <div class="bg-[#1e293b] rounded-2xl shadow-xl border border-white/5 hover:border-blue-500 hover:shadow-blue-500/20 hover:scale-[1.015] transition-all duration-500 p-6 space-y-4"
+                    data-aos="fade-up" data-aos-delay="300">
+                    <h3 class="text-xl sm:text-2xl font-bold flex items-center gap-2">
+                        <i class="fas fa-gamepad text-purple-400"></i> Gaming Store
+                    </h3>
+                    <p class="text-gray-300 text-sm sm:text-base leading-relaxed">Sistema de tienda de videojuegos usando C#. Backend funcional con base de datos y gestión de productos.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-purple-600 px-2 py-1 rounded text-xs sm:text-sm flex items-center gap-1">C#</span>
+                        <span class="bg-gray-400 px-2 py-1 rounded text-xs sm:text-sm flex items-center gap-1">.NET</span>
+                    </div>
+                    <div class="pt-2">
+                        <a href="https://github.com/BryanMartinez09/GamingStore" target="_blank"
+                          class="text-blue-400 hover:underline text-sm font-medium">
+                          → Código fuente
+                        </a>
+                    </div>
+                </div>
+
+                <div class="bg-[#1e293b] rounded-2xl shadow-xl border border-white/5 hover:border-blue-500 hover:shadow-blue-500/20 hover:scale-[1.015] transition-all duration-500 p-6 space-y-4"
+                    data-aos="fade-up" data-aos-delay="400">
+                    <h3 class="text-xl sm:text-2xl font-bold flex items-center gap-2">
+                        <i class="fas fa-university text-yellow-400"></i> UNAB Web
+                    </h3>
+                    <p class="text-gray-300 text-sm sm:text-base leading-relaxed">Sitio informativo institucional inspirado en la Universidad Dr. Andrés Bello. Diseño responsivo moderno.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-yellow-400 px-2 py-1 rounded text-xs sm:text-sm flex items-center gap-1"><i class="fab fa-html5"></i> HTML</span>
+                        <span class="bg-blue-400 px-2 py-1 rounded text-xs sm:text-sm flex items-center gap-1"><i class="fab fa-css3-alt"></i> CSS</span>
+                        <span class="bg-red-500 px-2 py-1 rounded text-xs sm:text-sm flex items-center gap-1"><i class="fab fa-js"></i> JavaScript</span>
+                    </div>
+                    <div class="pt-2">
+                        <a href="https://github.com/BryanMartinez09/Universidad-Andres-Bello" target="_blank"
+                          class="text-blue-400 hover:underline text-sm font-medium">
+                          → Código fuente
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- BOTÓN MÁS PROYECTOS -->
+            <div class="text-center mt-14 relative z-10" data-aos="fade-up" data-aos-delay="400">
+                <a href="https://github.com/BryanMartinez09" target="_blank"
+                  class="inline-block bg-blue-500 hover:bg-blue-600 px-6 py-3 rounded-lg text-white font-semibold shadow-md transition-all duration-300">
+                    Ver más proyectos en GitHub
+                </a>
+            </div>
+        </section>
+
+        <!-- PARTICULAS FLOTANTES -->
+        <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.11.1/tsparticles.bundle.min.js"></script>
+        <script>
+            tsParticles.load("tsparticles", {
+                background: { color: "transparent" },
+                fpsLimit: 60,
+                interactivity: {
+                    events: { onHover: { enable: true, mode: "repulse" }, resize: true },
+                    modes: { repulse: { distance: 100, duration: 0.4 } }
+                },
+                particles: {
+                    color: { value: ["#38bdf8", "#60a5fa", "#9333ea"] },
+                    links: { enable: true, color: "#ffffff", distance: 120, opacity: 0.2, width: 1 },
+                    move: { enable: true, speed: 1, outModes: { default: "bounce" } },
+                    number: { value: 50 },
+                    opacity: { value: 0.5 },
+                    shape: { type: "circle" },
+                    size: { value: { min: 1, max: 4 } }
+                },
+                detectRetina: true
+            });
+        </script>
+
+        <!-- ANIMACIONES PERSONALIZADAS -->
+        <style>
+        @keyframes float {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-12px); }
+        }
+        @keyframes float-slow {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-20px); }
+        }
+        .animate-float { animation: float 5s ease-in-out infinite; }
+        .animate-float-slow { animation: float-slow 10s ease-in-out infinite; }
+        .animate-float-fast { animation: float 3s ease-in-out infinite; }
+        .animate-ping-slow { animation: ping 8s infinite; }
+        </style>
+
+        <!-- Sección Sobre mí -->
+        <section id="sobre-mi" class="relative bg-[#0f172a] text-white py-4 px-4 sm:px-6 lg:px-20 overflow-hidden">
+
+            <!-- TÍTULO -->
+            <div class="text-center mb-16 sm:mb-20" data-aos="fade-up">
+                <h2 class="text-4xl sm:text-5xl font-extrabold mb-4">Sobre mí</h2>
+                <p class="text-gray-400 max-w-2xl mx-auto text-sm sm:text-base md:text-lg">
+                    Soy una persona autodidacta, apasionada por la tecnología y el desarrollo de soluciones web modernas.
+                </p>
+            </div>
+
+            <!-- CONTENIDO -->
+            <div class="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center" data-aos="fade-up" data-aos-delay="100">
+                <!-- TEXTO -->
+                <div class="space-y-6 text-gray-300 text-sm sm:text-base leading-relaxed">
+                    <p>
+                        Me encuentro cursando el último año de la carrera <span class="text-white font-semibold">Ingeniería en Sistemas</span>, y me destaco por tener una gran capacidad de adaptación, aprendizaje constante y atención al detalle.
+                    </p>
+                    <p>
+                        He desarrollado múltiples proyectos académicos y personales usando <span class="text-blue-400 font-semibold">Laravel</span>, <span class="text-green-400 font-semibold">React</span>, y <span class="text-yellow-400 font-semibold">Tailwind CSS</span>, aplicando buenas prácticas y patrones modernos como MVC.
+                    </p>
+                    <p>
+                        Me apasiona la creación de interfaces visuales fluidas, el trabajo en equipo y resolver desafíos complejos. Disfruto combinar diseño y lógica para construir experiencias web de alto impacto.
+                    </p>
+                </div>
+
+                <!-- DATOS DESTACADOS -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 text-sm sm:text-base">
+                    <div class="bg-[#1e293b] rounded-xl p-5 shadow-md hover:shadow-blue-500/20 transition transform hover:scale-105" data-aos="zoom-in">
+                        <i class="fas fa-graduation-cap text-xl text-blue-400 mb-2"></i>
+                        <p class="text-gray-400">Carrera:</p>
+                        <p class="text-white font-semibold">Ingeniería en Sistemas</p>
+                    </div>
+                    <div class="bg-[#1e293b] rounded-xl p-5 shadow-md hover:shadow-blue-500/20 transition transform hover:scale-105" data-aos="zoom-in" data-aos-delay="100">
+                        <i class="fas fa-code text-xl text-green-400 mb-2"></i>
+                        <p class="text-gray-400">Stack principal:</p>
+                        <p class="text-white font-semibold">Laravel, React, Tailwind, Django</p>
+                    </div>
+                    <div class="bg-[#1e293b] rounded-xl p-5 shadow-md hover:shadow-blue-500/20 transition transform hover:scale-105" data-aos="zoom-in" data-aos-delay="200">
+                        <i class="fas fa-language text-xl text-yellow-400 mb-2"></i>
+                        <p class="text-gray-400">Idiomas:</p>
+                        <p class="text-white font-semibold">Español (nativo), Inglés (intermedio)</p>
+                    </div>
+                    <div class="bg-[#1e293b] rounded-xl p-5 shadow-md hover:shadow-blue-500/20 transition transform hover:scale-105" data-aos="zoom-in" data-aos-delay="300">
+                        <i class="fas fa-bolt text-xl text-red-400 mb-2"></i>
+                        <p class="text-gray-400">Habilidades:</p>
+                        <p class="text-white font-semibold">Autodidacta, creativo, responsable</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+<section id="contacto" class="bg-[#0f172a] text-white py-20 px-6 sm:px-20">
+  <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center" data-aos="fade-up">
+
+    <!-- COLUMNA DE INFORMACIÓN -->
+    <div class="space-y-6 text-center md:text-left">
+      <h2 class="text-4xl sm:text-5xl font-extrabold text-blue-400">¡Hablemos!</h2>
+      <p class="text-gray-300 text-lg leading-relaxed">
+        ¿Tienes un proyecto, una idea o deseas colaborar? Estoy disponible para nuevas oportunidades. Puedes contactarme por los siguientes medios:
+      </p>
+
+      <!-- DATOS DE CONTACTO -->
+      <div class="space-y-4 text-white/90">
+        <div class="flex items-center gap-4 justify-center md:justify-start">
+          <i class="fas fa-envelope text-blue-400 text-xl animate-pulse"></i>
+          <a href="mailto:BryanAlexanderMartinez@outlook.com" class="hover:underline">BryanAlexanderMartinez@outlook.com</a>
         </div>
-
+        <div class="flex items-center gap-4 justify-center md:justify-start">
+          <i class="fas fa-map-marker-alt text-green-400 text-xl"></i>
+          <span>Sonsonate Nahuizalco, El Salvador</span>
+        </div>
+        <div class="flex items-center gap-4 justify-center md:justify-start">
+          <i class="fab fa-linkedin text-blue-500 text-xl"></i>
+          <a href="https://linkedin.com/in/bryan-martinez-006785319" target="_blank" class="hover:underline">LinkedIn</a>
+        </div>
+        <div class="flex items-center gap-4 justify-center md:justify-start">
+          <i class="fab fa-github text-white text-xl"></i>
+          <a href="https://github.com/BryanMartinez09" target="_blank" class="hover:underline">GitHub</a>
+        </div>
       </div>
-    </main>
-  </body>
 
+      <!-- BOTÓN DE CONTACTO RÁPIDO -->
+      <div class="pt-6">
+        <a href="mailto:bryan@example.com"
+          class="inline-block bg-blue-500 hover:bg-blue-600 px-6 py-3 rounded-lg text-white font-semibold shadow-lg transition-all duration-300">
+          <i class="fas fa-paper-plane mr-2"></i> Enviar mensaje directo
+        </a>
+      </div>
+    </div>
+
+    <!-- COLUMNA DE AVATAR + CITA -->
+    <div class="flex flex-col items-center gap-6 text-center">
+      <blockquote class="italic text-gray-400 max-w-md">
+        “Crear soluciones digitales no es solo código, es transformar ideas en experiencias reales.”
+      </blockquote>
+    </div>
+
+  </div>
+</section>
+
+
+
+
+    </main>
+
+    <!-- Inicializar AOS -->
+   <script>
+  AOS.init({
+    once: false, // <- importante si quieres que la animación se repita al hacer scroll
+    duration: 800,
+    offset: 120,
+    easing: 'ease-in-out',
+  });
+</script>
+>
+
+</body>
+</html>
