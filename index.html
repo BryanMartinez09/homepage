@@ -35,6 +35,20 @@
     .animate-float-fast { animation: float 3s ease-in-out infinite; }
     .animate-ping-slow { animation: ping 8s infinite; }
   </style>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+<style>
+  code, pre {
+    font-family: 'Fira Code', monospace;
+  }
+  .animate-fade-in-up {
+    animation: fadeInUp 3s ease-in-out infinite alternate;
+  }
+  @keyframes fadeInUp {
+    from { transform: translateY(10px); opacity: 0.7; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+</style>
+
 </head>
 
 <body class="min-h-screen text-white overflow-x-hidden bg-[#0f172a]">
@@ -122,44 +136,54 @@
 
 
 
+            <!-- Sección Inicio -->
+            <section id="inicio" class="min-h-[calc(100vh-3rem)] relative bg-[#0f172a] text-white flex flex-col md:flex-row items-center justify-between px-6 md:px-20 pt-20 pb-10 gap-10 overflow-hidden" data-aos="fade-up">
 
-        <!-- Sección Inicio -->
-        <section id="inicio" class="min-h-[calc(100vh-3rem)] relative bg-[#0f172a] text-white flex flex-col md:flex-row items-center justify-between px-6 md:px-20 pt-20 pb-10 gap-10 overflow-hidden" data-aos="fade-up">
+            <!-- Partículas de fondo -->
+            <div id="tsparticles" class="absolute inset-0 z-0"></div>
 
-        <!-- Contenedor de partículas -->
-        <div id="tsparticles" class="absolute inset-0 z-0"></div>
-
-        <!-- TEXTO -->
-        <div class="max-w-xl space-y-6 md:text-left text-center z-10" data-aos="fade-right">
-            <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight">
+            <!-- Contenido de texto -->
+            <div class="max-w-xl space-y-6 md:text-left text-center z-10" data-aos="fade-right">
+                <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight">
                 ¡HOLA, SOY <span class="text-white">BRYAN!</span><br>
-                <span class="text-blue-500">DESARROLLADOR WEB</span>
-            </h1>
-            <p class="text-gray-300 text-lg">
+                <span class="text-blue-500">DESARROLLADOR WEB </span>
+                </h1>
+                <p class="text-gray-300 text-lg">
                 Soy un desarrollador apasionado con la misión de crear sitios web modernos e interactivos.
                 Con una sólida base en Laravel, Vue y Tailwind, me enfoco en escribir código limpio y ofrecer experiencias fluidas.
-            </p>
+                </p>
 
-            <!-- BOTONES -->
-            <div class="flex flex-col sm:flex-row items-center gap-4 mt-6 justify-center md:justify-start"
-                x-data="{ showDropdown: false, showTooltip: false }">
+                <!-- Código decorativo tipo consola -->
+                <div class="hidden md:block bg-[#1e293b] text-green-400 font-mono text-sm rounded-lg shadow-xl p-4 w-full max-w-md overflow-hidden animate-fade-in-up backdrop-blur-md bg-opacity-50 border border-white/10">
+                <pre><code>
+            <span class="text-blue-400">function</span> <span class="text-yellow-400">bienvenido</span>() {
+            <span class="text-purple-400">console</span>.log(<span class="text-pink-400">"Hola, soy Bryan 🚀"</span>);
+            <span class="text-purple-400">return</span> <span class="text-green-400">"Desarrollador Web Fullstack Jr"</span>;
+            }
+            bienvenido();
+                </code></pre>
+                </div>
 
-                <!-- BOTÓN DE DESCARGA CON DROPDOWN HACIA ARRIBA -->
+                <!-- Botones de acción -->
+                <div class="flex flex-col sm:flex-row items-center gap-4 mt-6 justify-center md:justify-start"
+                    x-data="{ showDropdown: false, showTooltip: false }">
+
+                <!-- Botón descarga CV -->
                 <div class="relative">
                     <button @mouseenter="showTooltip = true" @mouseleave="showTooltip = false"
                             @click="showDropdown = !showDropdown"
                             class="bg-gradient-to-r from-cyan-500 to-indigo-600 hover:from-indigo-600 hover:to-cyan-500 text-white font-semibold px-6 py-3 rounded-xl transition-all duration-300 shadow-lg flex items-center gap-2 hover:scale-105">
-                        <i class="fas fa-download animate-bounce-once"></i> Descargar CV
+                    <i class="fas fa-download animate-bounce-once"></i> Descargar CV
                     </button>
 
-                    <!-- TOOLTIP -->
+                    <!-- Tooltip -->
                     <div x-show="showTooltip"
                         x-transition
                         class="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 bg-black/80 text-white text-xs px-3 py-2 rounded shadow-lg z-50">
-                        Elige entre Español o Inglés
+                    Elige entre Español o Inglés
                     </div>
 
-                    <!-- DROPDOWN HACIA ARRIBA -->
+                    <!-- Dropdown -->
                     <div x-show="showDropdown"
                         @click.away="showDropdown = false"
                         x-transition:enter="transition ease-out duration-200"
@@ -169,148 +193,135 @@
                         x-transition:leave-start="opacity-100 translate-y-0 scale-100"
                         x-transition:leave-end="opacity-0 -translate-y-2 scale-95"
                         class="absolute bottom-full mb-3 left-1/2 -translate-x-1/2 w-72 bg-[#1e293b] border border-white/10 backdrop-blur-md rounded-xl shadow-2xl z-50 text-white divide-y divide-white/10 overflow-hidden">
-
-                        <a href="CV/Bryan Martinez.pdf" download
-                          class="flex items-center gap-3 px-5 py-4 hover:bg-blue-600 transition-all duration-200">
-                            <span class="text-lg">🇪🇸</span>
-                            <div class="text-sm font-medium">Descargar versión en Español</div>
-                        </a>
-
-                        <a href="CV/Bryan MartinezEN.pdf" download
-                          class="flex items-center gap-3 px-5 py-4 hover:bg-blue-600 transition-all duration-200">
-                            <span class="text-lg">🇬🇧</span>
-                            <div class="text-sm font-medium">Download English Version</div>
-                        </a>
+                    <a href="CV/Bryan Martinez.pdf" download
+                        class="flex items-center gap-3 px-5 py-4 hover:bg-blue-600 transition-all duration-200">
+                        <span class="text-lg">🇪🇸</span>
+                        <div class="text-sm font-medium">Descargar versión en Español</div>
+                    </a>
+                    <a href="CV/Bryan MartinezEN.pdf" download
+                        class="flex items-center gap-3 px-5 py-4 hover:bg-blue-600 transition-all duration-200">
+                        <span class="text-lg">🇬🇧</span>
+                        <div class="text-sm font-medium">Download English Version</div>
+                    </a>
                     </div>
                 </div>
 
-                <!-- BOTÓN VER PORTAFOLIO -->
+                <!-- Botón ver portafolio -->
                 <a href="#proyectos"
-                  class="flex items-center gap-2 text-white hover:text-blue-400 transition-all duration-300 transform hover:scale-105 group">
+                    class="flex items-center gap-2 text-white hover:text-blue-400 transition-all duration-300 transform hover:scale-105 group">
                     <i class="fas fa-play-circle text-2xl group-hover:animate-pulse"></i>
                     <span class="text-lg font-medium">Ver Portafolio</span>
                 </a>
+                </div>
             </div>
-        </div>
 
-        <!-- IMAGEN -->
-        <div class="relative w-60 h-60 sm:w-72 sm:h-72 md:w-80 md:h-80 rounded-full z-10" data-aos="zoom-in">
-            <div class="absolute inset-0 rounded-full border-4 border-blue-500 animate-spin-slow opacity-30 z-0"></div>
-            <div class="relative w-full h-full rounded-full overflow-hidden border-4 border-blue-500 z-10 shadow-lg">
+            <!-- Imagen -->
+            <div class="relative w-60 h-60 sm:w-72 sm:h-72 md:w-80 md:h-80 rounded-full z-10" data-aos="zoom-in">
+                <div class="absolute inset-0 rounded-full border-4 border-blue-500 animate-spin-slow opacity-30 z-0"></div>
+                <div class="relative w-full h-full rounded-full overflow-hidden border-4 border-blue-500 z-10 shadow-lg">
                 <img src="images/Bryan.jpeg" alt="Bryan"
                     class="w-full h-full object-cover object-top rounded-full hover:scale-105 transition duration-500 ease-in-out">
+                </div>
             </div>
-        </div>
-    </section>
+            </section>
+
 
         <!-- Sección Habilidades -->
-       <section id="habilidades"class="min-h-screen bg-[#0f172a] text-white flex flex-col justify-center px-6 md:px-20">
+                <section id="habilidades"  class="min-h-[80vh] py-20 bg-[#0f172a] text-white flex flex-col justify-center px-6 md:px-20">
 
-          <!-- Título -->
-          <div class="text-center mb-5" data-aos="fade-down">
-              <h2 class="text-4xl md:text-5xl font-bold text-blue-400">Habilidades</h2>
-              <p class="mt-2 text-gray-300">Lo que me define como profesional</p>
-          </div>
+            <!-- Título -->
+            <div class="text-center mb-10" data-aos="fade-down">
+                <h2 class="text-4xl md:text-5xl font-bold text-blue-400">Habilidades</h2>
+                <p class="mt-2 text-gray-300">Lo que me define como profesional</p>
+            </div>
 
-          <!-- Contenido -->
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
+            <!-- Contenido -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
 
-              <!-- Habilidades Blandas -->
-              <div class="bg-[#1e293b] rounded-2xl p-8 shadow-lg hover:shadow-blue-500/20 transition" data-aos="fade-right">
-                  <h3 class="text-2xl font-semibold mb-4 border-b border-white/10 pb-2">Habilidades Blandas</h3>
-                  <ul class="space-y-3 text-white/90">
-                      <li class="flex items-center gap-3 hover:translate-x-1 transition-all duration-200">
-                          <i class="fas fa-check-circle text-blue-400 animate-pulse"></i> Aprendizaje rápido
-                      </li>
-                      <li class="flex items-center gap-3 hover:translate-x-1 transition-all duration-200">
-                          <i class="fas fa-check-circle text-blue-400 animate-pulse"></i> Resolución de problemas
-                      </li>
-                      <li class="flex items-center gap-3 hover:translate-x-1 transition-all duration-200">
-                          <i class="fas fa-check-circle text-blue-400 animate-pulse"></i> Trabajo en equipo
-                      </li>
-                      <li class="flex items-center gap-3 hover:translate-x-1 transition-all duration-200">
-                          <i class="fas fa-check-circle text-blue-400 animate-pulse"></i> Pensamiento analítico
-                      </li>
-                      <li class="flex items-center gap-3 hover:translate-x-1 transition-all duration-200">
-                          <i class="fas fa-check-circle text-blue-400 animate-pulse"></i> Comunicación efectiva
-                      </li>
-                      <li class="flex items-center gap-3 hover:translate-x-1 transition-all duration-200">
-                          <i class="fas fa-check-circle text-blue-400 animate-pulse"></i> Creatividad
-                      </li>
-                  </ul>
-              </div>
+                <!-- Habilidades Blandas -->
+                <div class="bg-[#1e293b] rounded-2xl p-8 shadow-lg hover:shadow-blue-500/20 transition" data-aos="fade-right">
+                <h3 class="text-2xl font-semibold mb-4 border-b border-white/10 pb-2">Habilidades Blandas</h3>
+                <ul class="space-y-3 text-white/90">
+                    <li class="flex items-center gap-3 hover:translate-x-1 transition-all duration-200">
+                    <i class="fas fa-check-circle text-blue-400 animate-pulse"></i> Aprendizaje rápido
+                    </li>
+                    <li class="flex items-center gap-3 hover:translate-x-1 transition-all duration-200">
+                    <i class="fas fa-check-circle text-blue-400 animate-pulse"></i> Resolución de problemas
+                    </li>
+                    <li class="flex items-center gap-3 hover:translate-x-1 transition-all duration-200">
+                    <i class="fas fa-check-circle text-blue-400 animate-pulse"></i> Trabajo en equipo
+                    </li>
+                    <li class="flex items-center gap-3 hover:translate-x-1 transition-all duration-200">
+                    <i class="fas fa-check-circle text-blue-400 animate-pulse"></i> Pensamiento analítico
+                    </li>
+                    <li class="flex items-center gap-3 hover:translate-x-1 transition-all duration-200">
+                    <i class="fas fa-check-circle text-blue-400 animate-pulse"></i> Comunicación efectiva
+                    </li>
+                    <li class="flex items-center gap-3 hover:translate-x-1 transition-all duration-200">
+                    <i class="fas fa-check-circle text-blue-400 animate-pulse"></i> Creatividad
+                    </li>
+                </ul>
+                </div>
 
-              <!-- Habilidades Técnicas -->
-              <div class="bg-[#1e293b] rounded-2xl p-8 shadow-lg hover:shadow-blue-500/20 transition" data-aos="fade-left">
-                  <h3 class="text-2xl font-semibold mb-4 border-b border-white/10 pb-2">Habilidades Técnicas</h3>
+                <!-- Habilidades Técnicas -->
+                <div class="bg-[#1e293b] rounded-2xl p-8 shadow-lg hover:shadow-blue-500/20 transition" data-aos="fade-left">
+                <h3 class="text-2xl font-semibold mb-4 border-b border-white/10 pb-2">Habilidades Técnicas</h3>
 
-                  <!-- Lenguajes -->
-                  <div class="mb-6" data-aos="zoom-in-up">
-                      <p class="font-bold mb-2 text-blue-300">Lenguajes de Programación</p>
-                      <div class="flex flex-wrap gap-4">
-                          <div class="flex items-center gap-2 bg-[#0f172a] px-4 py-2 rounded-xl hover:bg-blue-600 transition transform hover:scale-105">
-                              <i class="fa-brands fa-python text-xl animate-bounce text-blue-400"></i> Python
-                          </div>
-                          <div class="flex items-center gap-2 bg-[#0f172a] px-4 py-2 rounded-xl hover:bg-blue-600 transition transform hover:scale-105">
-                              <i class="fa-brands fa-php text-xl animate-bounce text-green-400"></i> PHP
-                          </div>
-                          <div class="flex items-center gap-2 bg-[#0f172a] px-4 py-2 rounded-xl hover:bg-blue-600 transition transform hover:scale-105">
-                              <i class="fa-brands fa-js text-xl animate-bounce text-yellow-400"></i> JavaScript
-                          </div>
-                          <div class="flex items-center gap-2 bg-[#0f172a] px-4 py-2 rounded-xl hover:bg-blue-600 transition transform hover:scale-105">
-                              <i class="fa-brands fa-java text-xl animate-bounce text-red-400"></i> Java
-                          </div>
-                          <div class="flex items-center gap-2 bg-[#0f172a] px-4 py-2 rounded-xl hover:bg-blue-600 transition transform hover:scale-105">
-                              <i class="fa-solid fa-code text-xl animate-bounce text-purple-400"></i> C#
-                          </div>
-                      </div>
-                  </div>
+                <!-- Lenguajes -->
+                <div class="mb-6" data-aos="zoom-in-up">
+                    <p class="font-bold mb-2 text-blue-300">Lenguajes de Programación</p>
+                    <div class="flex flex-wrap gap-4">
+                    <span class="flex items-center gap-2 bg-[#0f172a] px-4 py-2 rounded-xl hover:bg-blue-600 transition"><i class="fab fa-python text-blue-400"></i> Python</span>
+                    <span class="flex items-center gap-2 bg-[#0f172a] px-4 py-2 rounded-xl hover:bg-blue-600 transition"><i class="fab fa-php text-green-400"></i> PHP</span>
+                    <span class="flex items-center gap-2 bg-[#0f172a] px-4 py-2 rounded-xl hover:bg-blue-600 transition"><i class="fab fa-js text-yellow-400"></i> JavaScript</span>
+                    <span class="flex items-center gap-2 bg-[#0f172a] px-4 py-2 rounded-xl hover:bg-blue-600 transition"><i class="fab fa-java text-red-500"></i> Java</span>
+                    <span class="flex items-center gap-2 bg-[#0f172a] px-4 py-2 rounded-xl hover:bg-blue-600 transition"><i class="fas fa-code text-purple-400"></i> C#</span>
+                    </div>
+                </div>
 
-                  <!-- Bases de Datos -->
-                  <div class="mb-6" data-aos="fade-up">
-                      <p class="font-bold mb-2 text-blue-300">Bases de Datos</p>
-                      <div class="flex gap-4 flex-wrap">
-                          <span class="bg-[#0f172a] px-4 py-2 rounded-xl hover:bg-blue-600 transition">MySQL</span>
-                          <span class="bg-[#0f172a] px-4 py-2 rounded-xl hover:bg-blue-600 transition">SQL Server</span>
-                      </div>
-                  </div>
+                <!-- Bases de Datos -->
+                <div class="mb-6" data-aos="fade-up">
+                    <p class="font-bold mb-2 text-blue-300">Bases de Datos</p>
+                    <div class="flex flex-wrap gap-4">
+                    <span class="flex items-center gap-2 bg-[#0f172a] px-4 py-2 rounded-xl hover:bg-blue-600 transition"><i class="fas fa-database text-white"></i> MySQL</span>
+                    <span class="flex items-center gap-2 bg-[#0f172a] px-4 py-2 rounded-xl hover:bg-blue-600 transition"><i class="fas fa-server text-white"></i> SQL Server</span>
+                    </div>
+                </div>
 
-                  <!-- Control de Versiones -->
-                  <div class="mb-6" data-aos="fade-up" data-aos-delay="100">
-                      <p class="font-bold mb-2 text-blue-300">Control de versiones</p>
-                      <div class="flex gap-4">
-                          <span class="flex items-center gap-2 bg-[#0f172a] px-4 py-2 rounded-xl hover:bg-blue-600 transition">
-                              <i class="fab fa-git-alt text-orange-500"></i> Git
-                          </span>
-                          <span class="flex items-center gap-2 bg-[#0f172a] px-4 py-2 rounded-xl hover:bg-blue-600 transition">
-                              <i class="fab fa-github text-white"></i> GitHub
-                          </span>
-                      </div>
-                  </div>
+                <!-- Control de Versiones -->
+                <div class="mb-6" data-aos="fade-up" data-aos-delay="100">
+                    <p class="font-bold mb-2 text-blue-300">Control de versiones</p>
+                    <div class="flex gap-4 flex-wrap">
+                    <span class="flex items-center gap-2 bg-[#0f172a] px-4 py-2 rounded-xl hover:bg-blue-600 transition"><i class="fab fa-git-alt text-orange-500"></i> Git</span>
+                    <span class="flex items-center gap-2 bg-[#0f172a] px-4 py-2 rounded-xl hover:bg-blue-600 transition"><i class="fab fa-github text-white"></i> GitHub</span>
+                    </div>
+                </div>
 
-                  <!-- Frameworks y Librerías -->
-                  <div class="mb-6" data-aos="fade-up" data-aos-delay="200">
-                      <p class="font-bold mb-2 text-blue-300">Frameworks y Librerías</p>
-                      <div class="flex gap-4 flex-wrap">
-                          <span class="bg-[#0f172a] px-4 py-2 rounded-xl hover:bg-blue-600 transition">Laravel</span>
-                          <span class="bg-[#0f172a] px-4 py-2 rounded-xl hover:bg-blue-600 transition">React</span>
-                          <span class="bg-[#0f172a] px-4 py-2 rounded-xl hover:bg-blue-600 transition">Django</span>
-                          <span class="bg-[#0f172a] px-4 py-2 rounded-xl hover:bg-blue-600 transition">Tailwind CSS</span>
-                      </div>
-                  </div>
+                <!-- Frameworks y Librerías -->
+                <div class="mb-6" data-aos="fade-up" data-aos-delay="200">
+                    <p class="font-bold mb-2 text-blue-300">Frameworks y Librerías</p>
+                    <div class="flex gap-4 flex-wrap">
+                    <span class="flex items-center gap-2 bg-[#0f172a] px-4 py-2 rounded-xl hover:bg-blue-600 transition"><i class="fab fa-laravel text-red-500"></i> Laravel</span>
+                    <span class="flex items-center gap-2 bg-[#0f172a] px-4 py-2 rounded-xl hover:bg-blue-600 transition"><i class="fab fa-react text-cyan-400"></i> React</span>
+                    <span class="flex items-center gap-2 bg-[#0f172a] px-4 py-2 rounded-xl hover:bg-blue-600 transition"><i class="fas fa-leaf text-green-400"></i> Django</span>
+                    <span class="flex items-center gap-2 bg-[#0f172a] px-4 py-2 rounded-xl hover:bg-blue-600 transition"><i class="fab fa-css3-alt text-blue-300"></i> Tailwind CSS</span>
+                    </div>
+                </div>
 
-                  <!-- Otros -->
-                  <div data-aos="fade-up" data-aos-delay="300">
-                      <p class="font-bold mb-2 text-blue-300">Otras tecnologías</p>
-                      <div class="flex gap-4 flex-wrap">
-                          <span class="bg-[#0f172a] px-4 py-2 rounded-xl hover:bg-blue-600 transition">Docker</span>
-                          <span class="bg-[#0f172a] px-4 py-2 rounded-xl hover:bg-blue-600 transition">Flutter</span>
-                      </div>
-                  </div>
-              </div>
-          </div>
+                <!-- Otros -->
+                <div data-aos="fade-up" data-aos-delay="300">
+                    <p class="font-bold mb-2 text-blue-300">Otras tecnologías</p>
+                    <div class="flex gap-4 flex-wrap">
+                    <span class="flex items-center gap-2 bg-[#0f172a] px-4 py-2 rounded-xl hover:bg-blue-600 transition"><i class="fab fa-docker text-blue-400"></i> Docker</span>
+                    <span class="flex items-center gap-2 bg-[#0f172a] px-4 py-2 rounded-xl hover:bg-blue-600 transition"><i class="fas fa-mobile-alt text-pink-400"></i> Flutter</span>
+                    </div>
+                </div>
 
-      </section>
+                </div>
+            </div>
+
+            </section>
+
 
 
         <!-- Sección Proyectos -->
@@ -529,6 +540,9 @@
                 </div>
             </div>
         </section>
+        <hr class="my-20 border-t border-white/10 w-11/12 mx-auto">
+
+        
 
 <section id="contacto" class="bg-[#0f172a] text-white py-20 px-6 sm:px-20">
   <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center" data-aos="fade-up">
@@ -593,6 +607,38 @@
     easing: 'ease-in-out',
   });
 </script>
+<script>
+  const canvas = document.getElementById('matrixCanvas');
+  const ctx = canvas.getContext('2d');
+
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  const letters = '01'.split('');
+  const fontSize = 14;
+  const columns = canvas.width / fontSize;
+  const drops = Array.from({ length: columns }).fill(1);
+
+  function draw() {
+    ctx.fillStyle = 'rgba(15, 23, 42, 0.05)';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    ctx.fillStyle = '#38bdf8';
+    ctx.font = fontSize + 'px monospace';
+
+    for (let i = 0; i < drops.length; i++) {
+      const text = letters[Math.floor(Math.random() * letters.length)];
+      ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+      if (drops[i] * fontSize > canvas.height || Math.random() > 0.975) {
+        drops[i] = 0;
+      }
+      drops[i]++;
+    }
+  }
+
+  setInterval(draw, 40);
+</script>
+
 >
 
 </body>
